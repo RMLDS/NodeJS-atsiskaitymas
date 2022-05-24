@@ -14,3 +14,18 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+.listings, .sort, form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.listing {
+    width: 15%;
+    padding-right: 50px;
+}
+
+form > div {
+    margin-right: 35px;
+}

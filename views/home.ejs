@@ -4,9 +4,40 @@
 <body>
        <%- include('partials/header') %>
        <div class="main">
-              <p>Hello!</p>
+           <% if((typeof listings === 'string')){ %>
+               <h2><%= listings %></h2>
+             <% } else{ %>
+               <div class="sort">
+                   <form action="/" method="GET">
+                       <div style="display: none">
+                           <input type="text" value="1" name="page">
+                       </div>
+                       <div>
+                           <label for="limit">Rodyti po:</label>
+                           <select id="limit" name="limit">
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">5</option>
+                           </select>
+                       </div>
+                       <div><input type="submit" value="Atnaujinti"></div>
+                   </form>
+               </div>
+               <br>
+               <div class="blogs"> 
+                       <% for(var i=0; i<listings.results.length; i++) {%>
+                               <div class="blog">
+                                   <h3><%= listings.results[i].title %></h3>
+                                   <h5><%= listings.results[i].city %></h5>
+                                   <p><%= listings.results[i].website %></p>
+                               </div>
+                       <% } %>
+               </div>
+               <!-- listings.previousPageURL ?  display : null -->
+               <p><a href=<%= listings.previousPageURL %>>Ankstesnis puslapis</a>  |  Puslapis <%= listings.page %> is <%= listings.page_of %>  |  <a href=<%= listings.nextPageURL %>>Kitas puslapis</a></p>
+            <% } %>
        </div>
-       
 </body>
 </html>
 

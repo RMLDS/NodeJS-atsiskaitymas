@@ -34,8 +34,8 @@ router.post('/', async (req, res) => {
             email: userData.email,
             password: hashedPassword
         });
-        //await con.end();
-        res.send(`Created new user: ${userData.email}`);
+        //res.send(`Created new user: ${userData.email}`);
+        res.redirect('/login');
     } catch (error) {
         console.log(`Error: ${error}`);
         return res.status(400).send('Incorrect data sent.');
