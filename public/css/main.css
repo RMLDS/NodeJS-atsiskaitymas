@@ -10,7 +10,7 @@ body {
     padding: 2%;
 }
 
-.header {
+.header, .add_blog {
     display: flex;
     justify-content: space-between;
 }
@@ -26,6 +26,6 @@ body {
     padding-right: 50px;
 }
 
-form > div {
+form > div, form p {
     margin-right: 35px;
 }

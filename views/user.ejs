@@ -4,7 +4,15 @@
 <body>
     <%- include('partials/header') %>
     <div class="main">
-        <p><%= user %> blogs </p>
+        <div class="add_blog">
+            <p><%= user %> blog posts </p>
+            <form action="/blog" method="POST">
+                <p>Create new blog post:</p>
+                <input type="text" placeholder="title" name="title">
+                <input type="text" placeholder="content" name="content">
+                <input type="submit" value="Create blog post">
+            </form>
+        </div>
         <br><br>
         <div class="blogs"> 
             <% for(var i=0; i<listings.length; i++) {%>
