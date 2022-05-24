@@ -10,13 +10,13 @@ import registerRouter from './routes/ui/register.js';
 import loginRouter from './routes/ui/login.js';
 import userRouter from './routes/ui/user.js';
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const corsOptions = {
     origin : `http://localhost:${PORT}`,
     optionsSuccessStatus : 200
 };
+
 app.set('views', path.join(path.resolve('views')));
 app.set('view engine', 'ejs');
 app.use(express.static(path.resolve('public')));

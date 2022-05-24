@@ -18,7 +18,7 @@
                                <option value="1">1</option>
                                <option value="2">2</option>
                                <option value="3">3</option>
-                               <option value="4">5</option>
+                               <option value="5">5</option>
                            </select>
                        </div>
                        <div><input type="submit" value="Atnaujinti"></div>
@@ -28,10 +28,10 @@
                <div class="blogs"> 
                        <% for(var i=0; i<listings.results.length; i++) {%>
                                <div class="blog">
-                                   <h3><%= listings.results[i].title %></h3>
-                                   <h5><%= listings.results[i].city %></h5>
-                                   <p><%= listings.results[i].website %></p>
+                                   <h5><%= listings.results[i].title %></h5>
+                                   <p><%= listings.results[i].content %></p>
                                </div>
+                               <br>
                        <% } %>
                </div>
                <!-- listings.previousPageURL ?  display : null -->

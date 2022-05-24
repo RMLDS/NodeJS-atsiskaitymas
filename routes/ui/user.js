@@ -1,15 +1,18 @@
 import express from 'express';
+import verifyToken from '../../middleware/verifyToken.js';
+import con from '../../dbConnection.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    try {
+router.get('/', async (req, res) => {
+    if (verifyToken(req).data) {
+        const user = verifyToken(req).data.email;
         res.render('user', {
-            title : 'User page'
-        })
-        }
-    catch (error) {
-        console.log(error);
+            title : `Welcome ${user}`,
+            user : user
+        });
+    } else if (verifyToken(req).error) {
+        res.redirect('/login');
     }
 });
 

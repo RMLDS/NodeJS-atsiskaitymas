@@ -11,14 +11,12 @@ router.get('/', async (req, res) => {
     let page = parseInt(req.query.page);
     let limit = parseInt(req.query.limit);
     page ? page : page = 1;
-    limit ? limit : limit = 5;
+    limit ? limit : limit = 10;
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
     const results = {};
     const urlSplit2 = req.url.split('page=' + page)[1];
-    
-    //urlSplit2 === undefined ? 1 : urlSplit2;
 
     if (endIndex < listings.length) {
         results.next = {
@@ -36,11 +34,10 @@ router.get('/', async (req, res) => {
         results.previousPageURL = `?page=${results.previous.page}${urlSplit2}`;
     }
     results.page = page;
-    results.page_of = Math.round(listings.length / limit);
+    results.page_of = Math.round(listings.length / limit); // reikia patobulint apskaičiavimą čia;
     results.results = listings.slice(startIndex, endIndex);
 
     if (verifyToken(req).data) {
-        //kažakip reikia paimti čia cookie username;
         const user = verifyToken(req).data.email;
         res.render('home', {
             title : 'Welcome USER',
