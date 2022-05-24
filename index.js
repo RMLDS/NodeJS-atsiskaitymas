@@ -5,6 +5,10 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import usersRouter from './routes/api/users.js';
 import blogRouter from './routes/api/blog.js';
+import homeRouter from './routes/ui/home.js';
+import registerRouter from './routes/ui/register.js';
+import loginRouter from './routes/ui/login.js';
+import userRouter from './routes/ui/user.js';
 
 
 const app = express();
@@ -21,13 +25,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-    res.render('home', {
-        title : 'Blog Home Page'
-    })
-});
-
+app.use('/', homeRouter);
 app.use('/users', usersRouter);
 app.use('/blog', blogRouter);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
+app.use('/user', userRouter);
 
 app.listen(PORT, console.log(`Server is running on: http://localhost:${PORT}\n`));
