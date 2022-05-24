@@ -3,6 +3,8 @@ import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import usersRouter from './routes/api/users.js';
+import blogRouter from './routes/api/blog.js';
 
 
 const app = express();
@@ -24,5 +26,8 @@ app.get('/', (req, res) => {
         title : 'Blog Home Page'
     })
 });
+
+app.use('/users', usersRouter);
+app.use('/blog', blogRouter);
 
 app.listen(PORT, console.log(`Server is running on: http://localhost:${PORT}\n`));
