@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
         else {
             const match = await bcrypt.compare(r.password, data[0].password);
             if (match) {
-                const token = jwt.sign({id : data[0].id, email : r.email}, process.env.SECRET_TOKEN, {expiresIn : '15m'});
+                const token = jwt.sign({id : data[0].id, email : r.email}, process.env.SECRET_TOKEN, {expiresIn : '1m'});
                 //console.log(token);
                 return res.cookie("access_token", token, {
                     httpOnly: true,

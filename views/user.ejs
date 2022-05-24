@@ -4,7 +4,17 @@
 <body>
     <%- include('partials/header') %>
     <div class="main">
-        <%= user %>
+        <p><%= user %> blogs </p>
+        <br><br>
+        <div class="blogs"> 
+            <% for(var i=0; i<listings.length; i++) {%>
+                    <div class="blog">
+                        <h5><%= listings[i].title %></h5>
+                        <p><%= listings[i].content %></p>
+                    </div>
+                    <br>
+            <% } %>
+    </div>
     </div>
 </body>
 </html>
