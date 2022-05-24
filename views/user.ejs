@@ -19,11 +19,20 @@
                     <div class="blog">
                         <h5><%= listings[i].title %></h5>
                         <p><%= listings[i].content %></p>
+                        <button class="delete_btn" id="<%= listings[i].id %>">Delete</button>
                     </div>
                     <br>
             <% } %>
     </div>
     </div>
+<script>
+    document.querySelectorAll('.delete_btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            fetch(`/blog/${e.target.id}`, {method: 'DELETE'})
+            .then(e.target.parentElement.remove());
+        });
+    });
+</script>
 </body>
 </html>
 

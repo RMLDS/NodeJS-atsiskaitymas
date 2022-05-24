@@ -41,4 +41,18 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const r = req.params;
+        if (r.id) {
+            await con.query(`DELETE FROM blog WHERE id=${Number(r.id)}`);
+            res.redirect('/user');
+        } else {
+            res.send('No ID!');
+        }
+    } catch (err) {
+        res.send('Something went wrong. Check if all data was provided. Error: \n' + err);
+    }
+});
+
 export default router;
