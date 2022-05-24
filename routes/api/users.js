@@ -1,24 +1,22 @@
 import express from 'express';
+import con from '../../dbConnection.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        res.send(`Visi vartotojai`)
+        const [users] = await con.query(`SELECT * FROM user`);
+        res.send(users);
         }
     catch (error) {
         console.log(error);
     }
 });
 
-router.get('/:id/', (req, res) => {
-    const id = req.params.id;
+router.get('/:id/', async (req, res) => {
     try {
-        if (id) {
-            res.send(`User ID: ${id}`)
-        } else {
-            res.send(`No ID`)
-        }
+            const [user] = await con.query(`SELECT * FROM user WHERE id = ?`, [req.params.id]);
+            res.send(user)
     }
     catch (error) {
         console.log(error);

@@ -1,24 +1,22 @@
 import express from 'express';
+import con from '../../dbConnection.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        res.send(`Visi blogai`)
+        const [blogs] = await con.query(`SELECT * FROM blog`);
+        res.send(blogs);
         }
     catch (error) {
         console.log(error);
     }
 });
 
-router.get('/:id/', (req, res) => {
-    const id = req.params.id;
+router.get('/:id/', async (req, res) => {
     try {
-        if (id) {
-            res.send(`Blog ID: ${id}`)
-        } else {
-            res.send(`No ID`)
-        }
+            const [blog] = await con.query(`SELECT * FROM blog WHERE id = ?`, [req.params.id]);
+            res.send(blog)
     }
     catch (error) {
         console.log(error);
